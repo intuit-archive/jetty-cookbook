@@ -1,1 +1,1 @@
-rvm use ruby-1.9.3-p194@intu_jetty_cookbook --create
+rvm use ruby-1.9.3-p385@jetty_cookbook --create
