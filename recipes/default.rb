@@ -1,23 +1,23 @@
-user = node['intu']['jetty']['user']
+user = node['jetty']['user']
 
 user user do
   comment "I run Jetty"
-  home node['intu']['jetty']['user_home']
+  home node['jetty']['user_home']
   shell "/bin/bash"
 end
 
 package "jetty-hightide-server" do
-  version "#{node['intu']['jetty']['version']}-1"
+  version "#{node['jetty']['version']}-1"
 end
 
 template "/etc/default/jetty" do
   source "jetty-config-options.erb"
   mode "0644"
   owner user
-  group node['intu']['jetty']['group']
-  variables :jetty_home => node['intu']['jetty']['home'],
+  group node['jetty']['group']
+  variables :jetty_home => node['jetty']['home'],
             :jetty_user => user,
-            :jetty_port => node['intu']['jetty']['port']
+            :jetty_port => node['jetty']['port']
 end
 
 cookbook_file "/etc/init.d/jetty" do
