@@ -15,9 +15,10 @@ template "/etc/default/jetty" do
   mode "0644"
   owner user
   group node['jetty']['group']
-  variables :jetty_home => node['jetty']['home'],
-            :jetty_user => user,
-            :jetty_port => node['jetty']['port']
+  variables :jetty_home   => node['jetty']['home'],
+            :jetty_user   => user,
+            :jetty_port   => node['jetty']['port'],
+            :java_options => node['jetty']['java_options'].map { |key, value| "#{key}#{value}" }.join ' '
 end
 
 cookbook_file "/etc/init.d/jetty" do
