@@ -120,9 +120,9 @@ checkconnections()
   SLEEPVAR=300
   echo 
   while [ ${SLEEPVAR} -gt 0 ]; do
-    LISTENING=`netstat -an | grep 8080 | grep -v CLOSE_WAIT | grep -v LISTEN | wc -l`
+    LISTENING=`netstat -an | grep $JETTY_PORT | grep -v CLOSE_WAIT | grep -v LISTEN | wc -l`
     if [ ${LISTENING} -eq 0 ]; then
-      echo "No existing 8080 connections found.  Starting jetty...  "
+      echo "No existing $JETTY_PORT connections found.  Starting jetty...  "
       SLEEPVAR=0
     else
       echo "FOUND ${LISTENING} number of connections.  Waiting to start jetty... "
