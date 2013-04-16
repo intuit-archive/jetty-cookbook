@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Added checkconnections routine to init script start
+
 ## 0.1.2:
 
 * Added the ability to set java options for running Jetty
