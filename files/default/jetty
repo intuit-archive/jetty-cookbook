@@ -115,6 +115,35 @@ readConfig()
   source "$1"
 }
 
+checkconnections()
+{
+  SLEEPVAR=300
+  echo 
+  while [ ${SLEEPVAR} -gt 0 ]; do
+
+    LISTENING=`netstat -an | grep ${JETTY_PORT} | grep -v CLOSE_WAIT | grep -v LISTEN | wc -l`
+    if [ ${LISTENING} -eq 0 ]; then
+      echo "No existing ${JETTY_PORT} connections found.  Starting jetty...  "
+      break
+    else
+      echo "FOUND ${LISTENING} number of connections.  Waiting to start jetty... "
+    fi
+
+    SLEEPVAR=$((SLEEPVAR-1))
+    sleep 1
+
+    if [ ${SLEEPVAR} -eq 0 ]; then
+      echo "We found the following netstat connections ... "
+      netstat -an | grep ${JETTY_PORT} | grep -v CLOSE_WAIT | grep -v LISTEN
+      echo
+      echo
+      echo "WE ARE TRYING TO START ANYWAY... This startup should be reviewed!!!"
+      echo
+      echo
+      sleep 3
+    fi
+  done
+}
 
 
 ##################################################
@@ -400,6 +429,7 @@ fi
 case "$ACTION" in
   start)
     echo -n "Starting Jetty: "
+    checkconnections
 
     if (( NO_START )); then 
       echo "Not starting jetty - NO_START=1";
@@ -504,6 +534,7 @@ case "$ACTION" in
     fi
 
     "$JETTY_SH" stop "$@"
+    checkconnections
     "$JETTY_SH" start "$@"
 
     ;;
