@@ -4,7 +4,7 @@ This cookbook installs and configures the version of Jetty that Intuit has
 packaged as an RPM. This allows Intuit to work with whatever version of
 Jetty it prefers and not be held back by the Opscode Jetty cookbook.
 
-=== Differences between our version and the Opscode version
+### Differences between our version and the Opscode version
 
 * We need more flexibility in the version of Jetty we use than the Opscode one allowed
 * We prefer to RPM Jetty into our repos for deployments and the Opscode one
