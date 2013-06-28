@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'foodcritic', '1.7.0'
+gem 'berkshelf', '~> 2.0.3'
+gem 'foodcritic', '~> 2.1.0'
