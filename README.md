@@ -1,5 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/intuit/jetty-cookbook.png)](http://travis-ci.org/intuit/jetty-cookbook)
 
+**!!! This project has been deprecated.  We recommend you search the [Chef Supermarket ](https://supermarket.chef.io/) for a supported alternative !!!**
+
 ## The jetty Cookbook
 
 This cookbook installs and configures the version of Jetty that Intuit has
